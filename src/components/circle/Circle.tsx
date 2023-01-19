@@ -9,8 +9,11 @@ type CircleProps = {
 export default function Circle({ item }: CircleProps) {
     const { handleCircleClick } = useContext(GameContext);
     return (
-        <button className="cursor-pointer hover:bg-slate-400" onClick={event => handleCircleClick(event, item)}>
-            <p className={`${item.active ? "bg-green-600" : "bg-yellow-600"}`}>Circle</p>
-        </button>
+        <button
+            className={`cursor-pointer ${
+                item.firstPerson ? "bg-red-500" : item.secondPerson ? "bg-yellow-500" : "bg-violet-600"
+            } w-10 h-10 rounded-full`}
+            onClick={event => handleCircleClick(event, item)}
+        ></button>
     );
 }

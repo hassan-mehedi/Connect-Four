@@ -8,7 +8,7 @@ type CirclesProps = {
 
 export default function Circles({ row }: CirclesProps) {
     return (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-row gap-4">
             {row.map((item, index) => {
                 return <Circle key={index} item={item} />;
             })}
