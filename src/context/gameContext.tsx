@@ -213,27 +213,27 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
             circleData[row + 1][column - 1].active &&
             circleData[row + 1][column - 1].firstPerson === firstPerson &&
             circleData[row + 1][column - 1].secondPerson === secondPerson &&
-            circleData[row - 1][column - 1].active &&
-            circleData[row - 1][column - 1].firstPerson === firstPerson &&
-            circleData[row - 1][column - 1].secondPerson === secondPerson &&
-            circleData[row - 2][column - 2].active &&
-            circleData[row - 2][column - 2].firstPerson === firstPerson &&
-            circleData[row - 2][column - 2].secondPerson === secondPerson;
+            circleData[row - 1][column + 1].active &&
+            circleData[row - 1][column + 1].firstPerson === firstPerson &&
+            circleData[row - 1][column + 1].secondPerson === secondPerson &&
+            circleData[row - 2][column + 2].active &&
+            circleData[row - 2][column + 2].firstPerson === firstPerson &&
+            circleData[row - 2][column + 2].secondPerson === secondPerson;
 
         let middleSecondRightCornerWinningCheck =
             row >= 1 &&
             row <= 3 &&
-            column >= 1 &&
-            column <= 4 &&
-            circleData[row - 1][column - 1].active &&
-            circleData[row - 1][column - 1].firstPerson === firstPerson &&
-            circleData[row - 1][column - 1].secondPerson === secondPerson &&
-            circleData[row + 1][column + 1].active &&
-            circleData[row + 1][column + 1].firstPerson === firstPerson &&
-            circleData[row + 1][column + 1].secondPerson === secondPerson &&
-            circleData[row + 2][column + 2].active &&
-            circleData[row + 2][column + 2].firstPerson === firstPerson &&
-            circleData[row + 2][column + 2].secondPerson === secondPerson;
+            column >= 2 &&
+            column <= 5 &&
+            circleData[row + 1][column - 1].active &&
+            circleData[row + 1][column - 1].firstPerson === firstPerson &&
+            circleData[row + 1][column - 1].secondPerson === secondPerson &&
+            circleData[row + 2][column - 2].active &&
+            circleData[row + 2][column - 2].firstPerson === firstPerson &&
+            circleData[row + 2][column - 2].secondPerson === secondPerson &&
+            circleData[row - 1][column + 1].active &&
+            circleData[row - 1][column + 1].firstPerson === firstPerson &&
+            circleData[row - 1][column + 1].secondPerson === secondPerson;
 
         if (
             leftRowWinningCheck ||
@@ -246,7 +246,9 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
             bottomToTopLeftCornerWinningCheck ||
             bottomToTopRightCornerWinningCheck ||
             middleFirstLeftCornerWinningCheck ||
-            middleSecondLeftCornerWinningCheck
+            middleSecondLeftCornerWinningCheck ||
+            middleFirstRightCornerWinningCheck ||
+            middleSecondRightCornerWinningCheck
         ) {
             console.log(player + " Wins");
             setCircleData(circleArray);
