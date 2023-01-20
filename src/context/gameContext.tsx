@@ -9,6 +9,12 @@ export type GameContextType = {
     secondPlayerTurn: boolean;
     SetSecondPlayerTurn: React.Dispatch<React.SetStateAction<boolean>>;
     handleCircleClick: (event: React.MouseEvent<HTMLButtonElement>, item: CircleType) => void;
+    minutes: number;
+    setMinutes: React.Dispatch<React.SetStateAction<number>>;
+    seconds: number;
+    setSeconds: React.Dispatch<React.SetStateAction<number>>;
+    winner: string | null;
+    setWinner: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
 type GameContextProviderProps = {
@@ -21,6 +27,9 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
     const [circleData, setCircleData] = useState<CircleType[][]>(circleArray);
     const [firstPlayerTurn, SetFirstPlayerTurn] = useState(true);
     const [secondPlayerTurn, SetSecondPlayerTurn] = useState(false);
+    const [minutes, setMinutes] = useState(0);
+    const [seconds, setSeconds] = useState(30);
+    const [winner, setWinner] = useState<string | null>(null);
 
     const handleCircleClick = (event: React.MouseEvent<HTMLButtonElement>, item: CircleType) => {
         // Conditions
@@ -42,13 +51,15 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
         SetFirstPlayerTurn(!firstPlayerTurn);
         SetSecondPlayerTurn(!secondPlayerTurn);
         setCircleData(tempCircleData);
+        setMinutes(0);
+        setSeconds(30);
 
         checkWinner(item);
     };
 
     // Check the winner of the game after each turn
     const checkWinner = (item: CircleType) => {
-        const player = firstPlayerTurn ? "First Player" : "Second Player";
+        const player = firstPlayerTurn ? "PLAYER 1" : "PLAYER 2";
         let { row, column, firstPerson, secondPerson, active } = item;
 
         if (firstPlayerTurn) {
@@ -250,14 +261,28 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
             middleFirstRightCornerWinningCheck ||
             middleSecondRightCornerWinningCheck
         ) {
-            console.log(player + " Wins");
+            setWinner(player);
             setCircleData(circleArray);
         }
     };
 
     return (
         <GameContext.Provider
-            value={{ circleData, setCircleData, firstPlayerTurn, SetFirstPlayerTurn, secondPlayerTurn, SetSecondPlayerTurn, handleCircleClick }}
+            value={{
+                circleData,
+                setCircleData,
+                firstPlayerTurn,
+                SetFirstPlayerTurn,
+                secondPlayerTurn,
+                SetSecondPlayerTurn,
+                handleCircleClick,
+                minutes,
+                setMinutes,
+                seconds,
+                setSeconds,
+                winner,
+                setWinner,
+            }}
         >
             {children}
         </GameContext.Provider>

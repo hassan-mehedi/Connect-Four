@@ -3,10 +3,11 @@ import { GameContext } from "../../context/gameContext";
 
 import Circles from "../circle/Circles";
 import Counter from "../counter/Counter";
+import Winner from "../winner/Winner";
 import "./board.style.css";
 
 export default function Board() {
-    const { circleData, setCircleData, firstPlayerTurn, secondPlayerTurn } = useContext(GameContext);
+    const { circleData, winner } = useContext(GameContext);
 
     return (
         <div className="board">
@@ -15,9 +16,10 @@ export default function Board() {
                     return <Circles key={index} row={row} />;
                 })}
             </div>
-            <div className="counter">
-                <Counter />
-            </div>
+
+            {!winner && <Counter />}
+
+            {winner && <Winner />}
         </div>
     );
 }

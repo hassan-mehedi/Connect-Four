@@ -8,27 +8,3 @@
     border-right: 2px solid black;
     border-left: 2px solid black;
 }
-
-.counter {
-    width: 100px;
-    height: 100px;
-    background-color: #f96787;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    bottom: -120px;
-    left: 50%;
-    right: 50%;
-    transform: translate(-50%, -50%);
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-    border-bottom-left-radius: 10%;
-    border-bottom-right-radius: 10%;
-    border-top: 2px solid black;
-    border-bottom: 5px solid black;
-    border-right: 2px solid black;
-    border-left: 2px solid black;
-}
