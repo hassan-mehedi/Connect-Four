@@ -46,6 +46,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
         checkWinner(item);
     };
 
+    // Check the winner of the game after each turn
     const checkWinner = (item: CircleType) => {
         const player = firstPlayerTurn ? "First Player" : "Second Player";
         let { row, column, firstPerson, secondPerson, active } = item;
@@ -60,7 +61,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
             active = true;
         }
 
-        let leftWinningCheck =
+        let leftRowWinningCheck =
             column >= 3 &&
             circleData[row][column - 1].active &&
             circleData[row][column - 1].firstPerson === firstPerson &&
@@ -72,7 +73,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
             circleData[row][column - 3].firstPerson === firstPerson &&
             circleData[row][column - 3].secondPerson === secondPerson;
 
-        let rightWinningCheck =
+        let rightRowWinningCheck =
             column <= 3 &&
             circleData[row][column + 1].active &&
             circleData[row][column + 1].firstPerson === firstPerson &&
@@ -84,8 +85,171 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
             circleData[row][column + 3].firstPerson === firstPerson &&
             circleData[row][column + 3].secondPerson === secondPerson;
 
-        if (leftWinningCheck || rightWinningCheck) {
-            console.log(player + " Win");
+        let middleFirstRowWinningCheck =
+            column >= 1 &&
+            column <= 4 &&
+            circleData[row][column - 1].active &&
+            circleData[row][column - 1].firstPerson === firstPerson &&
+            circleData[row][column - 1].secondPerson === secondPerson &&
+            circleData[row][column + 1].active &&
+            circleData[row][column + 1].firstPerson === firstPerson &&
+            circleData[row][column + 1].secondPerson === secondPerson &&
+            circleData[row][column + 2].active &&
+            circleData[row][column + 2].firstPerson === firstPerson &&
+            circleData[row][column + 2].secondPerson === secondPerson;
+
+        let middleSecondRowWinningCheck =
+            column >= 2 &&
+            column <= 5 &&
+            circleData[row][column - 1].active &&
+            circleData[row][column - 1].firstPerson === firstPerson &&
+            circleData[row][column - 1].secondPerson === secondPerson &&
+            circleData[row][column - 2].active &&
+            circleData[row][column - 2].firstPerson === firstPerson &&
+            circleData[row][column - 2].secondPerson === secondPerson &&
+            circleData[row][column + 1].active &&
+            circleData[row][column + 1].firstPerson === firstPerson &&
+            circleData[row][column + 1].secondPerson === secondPerson;
+
+        let topToBottomColumnWinningCheck =
+            row <= 2 &&
+            circleData[row + 1][column].active &&
+            circleData[row + 1][column].firstPerson === firstPerson &&
+            circleData[row + 1][column].secondPerson === secondPerson &&
+            circleData[row + 2][column].active &&
+            circleData[row + 2][column].firstPerson === firstPerson &&
+            circleData[row + 2][column].secondPerson === secondPerson &&
+            circleData[row + 3][column].active &&
+            circleData[row + 3][column].firstPerson === firstPerson &&
+            circleData[row + 3][column].secondPerson === secondPerson;
+
+        let topToBottomLeftCornerWinningCheck =
+            row <= 2 &&
+            column >= 3 &&
+            circleData[row + 1][column - 1].active &&
+            circleData[row + 1][column - 1].firstPerson === firstPerson &&
+            circleData[row + 1][column - 1].secondPerson === secondPerson &&
+            circleData[row + 2][column - 2].active &&
+            circleData[row + 2][column - 2].firstPerson === firstPerson &&
+            circleData[row + 2][column - 2].secondPerson === secondPerson &&
+            circleData[row + 3][column - 3].active &&
+            circleData[row + 3][column - 3].firstPerson === firstPerson &&
+            circleData[row + 3][column - 3].secondPerson === secondPerson;
+
+        let middleFirstLeftCornerWinningCheck =
+            row >= 2 &&
+            row <= 4 &&
+            column >= 2 &&
+            column <= 5 &&
+            circleData[row + 1][column + 1].active &&
+            circleData[row + 1][column + 1].firstPerson === firstPerson &&
+            circleData[row + 1][column + 1].secondPerson === secondPerson &&
+            circleData[row - 1][column - 1].active &&
+            circleData[row - 1][column - 1].firstPerson === firstPerson &&
+            circleData[row - 1][column - 1].secondPerson === secondPerson &&
+            circleData[row - 2][column - 2].active &&
+            circleData[row - 2][column - 2].firstPerson === firstPerson &&
+            circleData[row - 2][column - 2].secondPerson === secondPerson;
+
+        let middleSecondLeftCornerWinningCheck =
+            row >= 1 &&
+            row <= 3 &&
+            column >= 1 &&
+            column <= 4 &&
+            circleData[row - 1][column - 1].active &&
+            circleData[row - 1][column - 1].firstPerson === firstPerson &&
+            circleData[row - 1][column - 1].secondPerson === secondPerson &&
+            circleData[row + 1][column + 1].active &&
+            circleData[row + 1][column + 1].firstPerson === firstPerson &&
+            circleData[row + 1][column + 1].secondPerson === secondPerson &&
+            circleData[row + 2][column + 2].active &&
+            circleData[row + 2][column + 2].firstPerson === firstPerson &&
+            circleData[row + 2][column + 2].secondPerson === secondPerson;
+
+        let bottomToTopLeftCornerWinningCheck =
+            row >= 3 &&
+            column >= 3 &&
+            circleData[row - 1][column - 1].active &&
+            circleData[row - 1][column - 1].firstPerson === firstPerson &&
+            circleData[row - 1][column - 1].secondPerson === secondPerson &&
+            circleData[row - 2][column - 2].active &&
+            circleData[row - 2][column - 2].firstPerson === firstPerson &&
+            circleData[row - 2][column - 2].secondPerson === secondPerson &&
+            circleData[row - 3][column - 3].active &&
+            circleData[row - 3][column - 3].firstPerson === firstPerson &&
+            circleData[row - 3][column - 3].secondPerson === secondPerson;
+
+        let topToBottomRightCornerWinningCheck =
+            row <= 2 &&
+            column <= 3 &&
+            circleData[row + 1][column + 1].active &&
+            circleData[row + 1][column + 1].firstPerson === firstPerson &&
+            circleData[row + 1][column + 1].secondPerson === secondPerson &&
+            circleData[row + 2][column + 2].active &&
+            circleData[row + 2][column + 2].firstPerson === firstPerson &&
+            circleData[row + 2][column + 2].secondPerson === secondPerson &&
+            circleData[row + 3][column + 3].active &&
+            circleData[row + 3][column + 3].firstPerson === firstPerson &&
+            circleData[row + 3][column + 3].secondPerson === secondPerson;
+
+        let bottomToTopRightCornerWinningCheck =
+            row >= 3 &&
+            column <= 3 &&
+            circleData[row - 1][column + 1].active &&
+            circleData[row - 1][column + 1].firstPerson === firstPerson &&
+            circleData[row - 1][column + 1].secondPerson === secondPerson &&
+            circleData[row - 2][column + 2].active &&
+            circleData[row - 2][column + 2].firstPerson === firstPerson &&
+            circleData[row - 2][column + 2].secondPerson === secondPerson &&
+            circleData[row - 3][column + 3].active &&
+            circleData[row - 3][column + 3].firstPerson === firstPerson &&
+            circleData[row - 3][column + 3].secondPerson === secondPerson;
+
+        let middleFirstRightCornerWinningCheck =
+            row >= 2 &&
+            row <= 4 &&
+            column >= 1 &&
+            column <= 4 &&
+            circleData[row + 1][column - 1].active &&
+            circleData[row + 1][column - 1].firstPerson === firstPerson &&
+            circleData[row + 1][column - 1].secondPerson === secondPerson &&
+            circleData[row - 1][column - 1].active &&
+            circleData[row - 1][column - 1].firstPerson === firstPerson &&
+            circleData[row - 1][column - 1].secondPerson === secondPerson &&
+            circleData[row - 2][column - 2].active &&
+            circleData[row - 2][column - 2].firstPerson === firstPerson &&
+            circleData[row - 2][column - 2].secondPerson === secondPerson;
+
+        let middleSecondRightCornerWinningCheck =
+            row >= 1 &&
+            row <= 3 &&
+            column >= 1 &&
+            column <= 4 &&
+            circleData[row - 1][column - 1].active &&
+            circleData[row - 1][column - 1].firstPerson === firstPerson &&
+            circleData[row - 1][column - 1].secondPerson === secondPerson &&
+            circleData[row + 1][column + 1].active &&
+            circleData[row + 1][column + 1].firstPerson === firstPerson &&
+            circleData[row + 1][column + 1].secondPerson === secondPerson &&
+            circleData[row + 2][column + 2].active &&
+            circleData[row + 2][column + 2].firstPerson === firstPerson &&
+            circleData[row + 2][column + 2].secondPerson === secondPerson;
+
+        if (
+            leftRowWinningCheck ||
+            rightRowWinningCheck ||
+            middleFirstRowWinningCheck ||
+            middleSecondRowWinningCheck ||
+            topToBottomColumnWinningCheck ||
+            topToBottomLeftCornerWinningCheck ||
+            topToBottomRightCornerWinningCheck ||
+            bottomToTopLeftCornerWinningCheck ||
+            bottomToTopRightCornerWinningCheck ||
+            middleFirstLeftCornerWinningCheck ||
+            middleSecondLeftCornerWinningCheck
+        ) {
+            console.log(player + " Wins");
+            setCircleData(circleArray);
         }
     };
 
