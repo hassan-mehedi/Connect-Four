@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { GameContext } from "../../context/gameContext";
-import "./winner.style.css";
 
 export default function Winner() {
     const { winner, setWinner } = useContext(GameContext);

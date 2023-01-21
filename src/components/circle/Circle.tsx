@@ -10,11 +10,8 @@ export default function Circle({ item }: CircleProps) {
     const { handleCircleClick } = useContext(GameContext);
     return (
         <button
-            className={`cursor-pointer ${
-                item.firstPerson ? "bg-red-500" : item.secondPerson ? "bg-yellow-500" : "bg-violet-600"
-            } w-12 h-12 rounded-full`}
+            className={`circle ${item.firstPerson ? "bg-red-500" : item.secondPerson ? "bg-yellow-500" : "bg-violet-600"} `}
             onClick={event => handleCircleClick(event, item)}
-            style={{ borderTop: "8px solid black", borderBottom: "2px solid black", borderRight: "2px solid black", borderLeft: "2px solid black" }}
         ></button>
     );
 }

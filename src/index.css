@@ -31,3 +31,156 @@ body {
     min-height: 100vh;
     background-color: #7945ff;
 }
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.menu > button {
+    background-color: #5c2dd3;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 15px;
+    border-radius: 20px;
+}
+
+.logo {
+    width: 45px;
+    height: 45px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+}
+
+.logo > .logo-item {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    border-top: 2px solid black;
+    border-bottom: 4px solid black;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.board {
+    position: relative;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 10px 10px 40px 10px;
+    border-top: 2px solid black;
+    border-bottom: 10px solid black;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.circle {
+    border-top: 8px solid black;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+    cursor: pointer;
+    border-radius: 100%;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.counter {
+    width: 150px;
+    height: 100px;
+    background-color: #f96787;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    position: absolute;
+    bottom: -120px;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    border-top: 2px solid black;
+    border-bottom: 5px solid black;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.winner {
+    width: 350px;
+    height: 150px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: absolute;
+    bottom: -195px;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    border-top: 2px solid black;
+    border-bottom: 10px solid black;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.winner > p {
+    font-size: 12px;
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.winner > h1 {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.winner > button {
+    background-color: #7945ff;
+    color: #fff;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 2px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.winner > button:hover {
+    background-color: #6c34fa;
+}
+
+@media screen and (max-width: 992px) {
+    .circle {
+        width: 2rem;
+        height: 2rem;
+        border-top: 6px solid black;
+    }
+
+    .winner {
+        width: 250px;
+    }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+    .circle {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-top: 5px solid black;
+    }
+
+    .winner {
+        width: 200px;
+    }
+}

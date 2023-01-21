@@ -1,6 +1,5 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { GameContext } from "../../context/gameContext";
-import "./counter.style.css";
 
 export default function Counter() {
     const { firstPlayerTurn, secondPlayerTurn, SetFirstPlayerTurn, SetSecondPlayerTurn, minutes, setMinutes, seconds, setSeconds } =

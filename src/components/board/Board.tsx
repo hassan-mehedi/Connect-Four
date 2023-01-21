@@ -4,7 +4,6 @@ import { GameContext } from "../../context/gameContext";
 import Circles from "../circle/Circles";
 import Counter from "../counter/Counter";
 import Winner from "../winner/Winner";
-import "./board.style.css";
 
 export default function Board() {
     const { circleData, winner } = useContext(GameContext);
