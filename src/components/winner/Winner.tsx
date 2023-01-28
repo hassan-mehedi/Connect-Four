@@ -5,8 +5,8 @@ export default function Winner() {
     const { winner, setWinner } = useContext(GameContext);
     return (
         <div className="winner">
-            <p>{winner}</p>
-            <h1>WINS</h1>
+            <p>{winner !== "Draw" && winner}</p>
+            <h1>{winner === "Draw" ? "DRAW" : "WINS"}</h1>
             <button
                 onClick={() => {
                     setWinner(null);

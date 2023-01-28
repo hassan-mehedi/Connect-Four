@@ -29,6 +29,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
     const [secondPlayerTurn, SetSecondPlayerTurn] = useState(false);
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(30);
+    const [steps, setSteps] = useState(0);
     const [winner, setWinner] = useState<string | null>(null);
 
     const handleCircleClick = (event: React.MouseEvent<HTMLButtonElement>, item: CircleType) => {
@@ -53,6 +54,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
         setCircleData(tempCircleData);
         setMinutes(0);
         setSeconds(30);
+        setSteps(steps + 1);
 
         checkWinner(item);
     };
@@ -262,6 +264,9 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
             middleSecondRightCornerWinningCheck
         ) {
             setWinner(player);
+            setCircleData(circleArray);
+        } else if (steps >= 41) {
+            setWinner("Draw");
             setCircleData(circleArray);
         }
     };
